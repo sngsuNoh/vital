@@ -1,0 +1,555 @@
+/* ========================================
+   Vital - 스킨케어 특허 검색 엔진 스타일
+   ======================================== */
+
+:root {
+    --vital-blue: #4285F4;
+    --vital-red: #EA4335;
+    --vital-yellow: #FBBC04;
+    --vital-green: #34A853;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dfe1e5;
+    --hover-bg: #f8f9fa;
+    --shadow-sm: 0 1px 6px rgba(32,33,36,.28);
+    --shadow-md: 0 2px 8px rgba(32,33,36,.2);
+    --shadow-lg: 0 4px 16px rgba(32,33,36,.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-primary);
+    background-color: #fff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   홈 페이지 스타일
+   ======================================== */
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.home-container {
+    max-width: 580px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo */
+.logo-container {
+    text-align: center;
+    animation: logoAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes logoAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.vital-logo {
+    width: 200px;
+    height: 60px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.logo-letter {
+    cursor: default;
+    transition: transform 0.3s ease;
+}
+
+.logo-letter:hover {
+    transform: translateY(-2px);
+}
+
+.tagline {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Search Box */
+.search-box-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    background: #fff;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.search-box:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: rgba(223,225,229,0);
+}
+
+.search-box:focus-within {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(223,225,229,0);
+}
+
+.search-icon {
+    color: #9aa0a6;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.search-input::placeholder {
+    color: #9aa0a6;
+}
+
+.clear-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #70757a;
+    transition: background 0.2s;
+}
+
+.clear-btn:hover {
+    background: var(--hover-bg);
+}
+
+/* Search Buttons */
+.search-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-btn {
+    padding: 0 24px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background: var(--hover-bg);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    letter-spacing: 0.3px;
+}
+
+.search-btn:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+}
+
+.primary-btn {
+    background: var(--vital-blue);
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #1a73e8;
+    border: 1px solid var(--vital-blue);
+    box-shadow: 0 1px 3px rgba(66,133,244,.3);
+}
+
+/* Info Text */
+.info-text {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   검색 결과 페이지 스타일
+   ======================================== */
+
+.search-page {
+    background: #fff;
+    min-height: 100vh;
+}
+
+/* Header */
+.search-header {
+    border-bottom: 1px solid #ebebeb;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 6px rgba(32,33,36,.08);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.vital-logo-small {
+    width: 120px;
+    height: 36px;
+    transition: opacity 0.2s;
+}
+
+.vital-logo-small:hover {
+    opacity: 0.8;
+}
+
+.header-search {
+    flex: 1;
+    max-width: 600px;
+    height: 44px;
+    border-radius: 22px;
+}
+
+.header-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--vital-blue);
+    margin-left: 8px;
+    transition: background 0.2s;
+}
+
+.header-search-btn:hover {
+    background: var(--hover-bg);
+}
+
+/* Results Container */
+.results-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.results-info {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Loading */
+.loading-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    gap: 20px;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--vital-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 1000;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.no-results svg {
+    margin-bottom: 20px;
+}
+
+.no-results h2 {
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.no-results p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.suggestions {
+    list-style: none;
+    margin-top: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+.suggestions li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.suggestions li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--vital-blue);
+}
+
+/* Results List */
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.result-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    animation: resultAppear 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+@keyframes resultAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-item:nth-child(1) { animation-delay: 0.05s; }
+.result-item:nth-child(2) { animation-delay: 0.1s; }
+.result-item:nth-child(3) { animation-delay: 0.15s; }
+.result-item:nth-child(4) { animation-delay: 0.2s; }
+.result-item:nth-child(5) { animation-delay: 0.25s; }
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+}
+
+.result-app-no {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.similarity-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, rgba(66,133,244,0.1) 0%, rgba(52,168,83,0.1) 100%);
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.similarity-percentage {
+    color: var(--vital-blue);
+}
+
+.similarity-bar {
+    width: 60px;
+    height: 4px;
+    background: #e8eaed;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.similarity-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--vital-blue) 0%, var(--vital-green) 100%);
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.result-title {
+    font-size: 20px;
+    color: #1a0dab;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.result-title:hover {
+    text-decoration: underline;
+    color: var(--vital-blue);
+}
+
+.result-abstract {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    .header-search {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .results-container {
+        padding: 16px;
+    }
+    
+    .result-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .similarity-badge {
+        align-self: flex-start;
+    }
+    
+    .result-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-container {
+        gap: 24px;
+    }
+    
+    .vital-logo {
+        width: 160px;
+        height: 48px;
+    }
+    
+    .search-box {
+        height: 44px;
+    }
+    
+    .search-btn {
+        padding: 0 20px;
+        height: 38px;
+        font-size: 13px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

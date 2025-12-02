@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital - 스킨케어 특허 검색 엔진</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="home-page">
+    <div class="home-container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <svg class="vital-logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                <!-- V (파랑) -->
+                <text x="10" y="45" class="logo-letter" fill="#4285F4" font-size="48" font-weight="700" font-family="'Noto Sans KR', sans-serif">V</text>
+                <!-- i (빨강) -->
+                <text x="50" y="45" class="logo-letter" fill="#EA4335" font-size="48" font-weight="700" font-family="'Noto Sans KR', sans-serif">i</text>
+                <!-- t (노랑) -->
+                <text x="75" y="45" class="logo-letter" fill="#FBBC04" font-size="48" font-weight="700" font-family="'Noto Sans KR', sans-serif">t</text>
+                <!-- a (파랑) -->
+                <text x="105" y="45" class="logo-letter" fill="#4285F4" font-size="48" font-weight="700" font-family="'Noto Sans KR', sans-serif">a</text>
+                <!-- l (초록) -->
+                <text x="145" y="45" class="logo-letter" fill="#34A853" font-size="48" font-weight="700" font-family="'Noto Sans KR', sans-serif">l</text>
+            </svg>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box-container">
+            <div class="search-box">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="스킨케어 특허 검색 (예: 히알루론산 보습 화장료)"
+                    autocomplete="off"
+                >
+                <button class="clear-btn" id="clearBtn" style="display: none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="search-buttons">
+                <button class="search-btn primary-btn" id="searchBtn">검색</button>
+                <button class="search-btn" id="luckyBtn">I'm Feeling Lucky</button>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-text">
+            <p>대한민국 스킨케어 특허 검색 엔진</p>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>특허 검색 중...</p>
+    </div>
+
+    <script src="search.js"></script>
+    <script>
+        // 홈 페이지 초기화
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const luckyBtn = document.getElementById('luckyBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // 검색 실행
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // 이벤트 리스너
+        searchBtn.addEventListener('click', performSearch);
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            clearBtn.style.display = searchInput.value ? 'flex' : 'none';
+        });
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            searchInput.focus();
+        });
+
+        // I'm Feeling Lucky - 랜덤 쿼리
+        luckyBtn.addEventListener('click', () => {
+            const sampleQueries = [
+                '히알루론산 보습 화장료',
+                '콜라겐 함유 화장료',
+                '비타민 C 화장료',
+                '레티놀 주름 개선',
+                '나이아신아마이드 미백',
+                '세라마이드 피부 장벽',
+                '펩타이드 안티에이징',
+                'AHA BHA 각질 제거'
+            ];
+            const randomQuery = sampleQueries[Math.floor(Math.random() * sampleQueries.length)];
+            searchInput.value = randomQuery;
+            performSearch();
+        });
+
+        // 포커스 효과
+        searchInput.focus();
+    </script>
+</body>
+</html>
